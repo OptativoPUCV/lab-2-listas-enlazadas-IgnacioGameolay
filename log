@@ -70,3 +70,23 @@ list.c:107:23: error: 'return' with no value, in function returning non-void [-W
 cc1.exe: all warnings being treated as errors
 Compilation failed
 5a1edc4
+Thu, Mar 20, 2025  6:36:34 PM: 
+ list.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+In file included from test.c:5:0:
+list.c:106:7: error: conflicting types for 'pushFront'
+ void* pushFront(List* list, void * data) {
+       ^
+In file included from list.c:4:0,
+                 from test.c:5:
+list.h:16:6: note: previous declaration of 'pushFront' was here
+ void pushFront(List * list, void * data);
+      ^
+In file included from test.c:5:0:
+list.c: In function 'pushFront':
+list.c:118:1: error: control reaches end of non-void function [-Werror=return-type]
+ }
+ ^
+cc1.exe: all warnings being treated as errors
+Compilation failed
+cf5aef4

@@ -104,7 +104,7 @@ se actializa head para que apunte al nuevo
 
 */
 void* pushFront(List* list, void * data) {
-    if (list == NULL) return; // verifica si la lista existe
+    if (list == NULL) return NULL; // verifica si la lista existe
 
     Node * newNode = createNode(data) ; //crea un nuevo nodo con el dato
 
