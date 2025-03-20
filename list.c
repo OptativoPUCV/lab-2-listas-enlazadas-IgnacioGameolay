@@ -134,7 +134,7 @@ actualiza el current-> para enlazar en nuevo nodo
 
 */
 void pushCurrent(List * list, void * data) {
-    if (list = NULL || list->current == NULL ) return; //verifica si la lista o current existen
+    if (list == NULL || list->current == NULL ) return; //verifica si la lista o current existen
     Node * newNode = createNode(data); // crea un nuevo nodo con el dato
     newNode->next = list->current->next; // el nuevo nodo apunta al siguiente de current
     newNode->prev = list->current; //el nuevo nodo apunta a current como previo
