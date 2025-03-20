@@ -50,3 +50,23 @@ Thu, Mar 20, 2025  6:29:39 PM:
  tests:  9|3
 total_score: 35/70
 832bb21
+Thu, Mar 20, 2025  6:36:00 PM: 
+ list.c | 22 +++++++++++++++++++++-
+ 1 file changed, 21 insertions(+), 1 deletion(-)
+In file included from test.c:5:0:
+list.c:106:7: error: conflicting types for 'pushFront'
+ void* pushFront(List* list, void * data) {
+       ^
+In file included from list.c:4:0,
+                 from test.c:5:
+list.h:16:6: note: previous declaration of 'pushFront' was here
+ void pushFront(List * list, void * data);
+      ^
+In file included from test.c:5:0:
+list.c: In function 'pushFront':
+list.c:107:23: error: 'return' with no value, in function returning non-void [-Werror=return-type]
+     if (list == NULL) return; // verifica si la lista existe
+                       ^
+cc1.exe: all warnings being treated as errors
+Compilation failed
+5a1edc4

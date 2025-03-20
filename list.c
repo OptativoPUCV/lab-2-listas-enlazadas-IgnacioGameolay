@@ -94,7 +94,27 @@ void * prevList(List * list)  {
     return list->current->data;
 }
 
-void pushFront(List * list, void * data) {
+/* PUSHFRONT
+Se verifica si list es null , si la lista no existe, retorna sin hacer nada
+se crea e inicializa un nuevo nodo con createNode(data)
+Se verifica si la lista esta vacia, si lo esta, el nuevo nodo se convierte en head y tail
+si no, el nuevo nodo paunta al nodo que antes era head
+el antiguo head actualiza su prev para apuntar al nuevo nodo y
+se actializa head para que apunte al nuevo
+
+*/
+void* pushFront(List* list, void * data) {
+    if (list == NULL) return; // verifica si la lista existe
+
+    Node * newNode = createNode(data) ; //crea un nuevo nodo con el dato
+
+    if (list->head == NULL) { //si la lista esta vacia
+        list->head = list->tail = newNode; // El nuevo nodo es el unico en la lista
+    } else {
+        newNode->next = list->head; // enlaza el nuevo nodo con el antiguo head
+        list->head->prev = newNode; // enlaza el antiguo head con el nuevo nodo
+        list->head = newNode; // actualiza head para que apunte al nuevo nodo
+    }
 }
 
 void pushBack(List * list, void * data) {
