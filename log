@@ -10,3 +10,17 @@ Thu, Mar 20, 2025  5:58:32 PM:
  tests:  6|4
 total_score: 25/70
 6bd132b
+Thu, Mar 20, 2025  6:25:07 PM: 
+ list.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+In file included from test.c:5:0:
+list.c: In function 'prevList':
+list.c:66:14: error: suggest parentheses around comparison in operand of '|' [-Werror=parentheses]
+     if (list == NULL | list->current == NULL | list->current->prev == NULL) {
+              ^
+list.c:66:68: error: suggest parentheses around comparison in operand of '|' [-Werror=parentheses]
+     if (list == NULL | list->current == NULL | list->current->prev == NULL) {
+                                                                    ^
+cc1.exe: all warnings being treated as errors
+Compilation failed
+4b77922
