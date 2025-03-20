@@ -103,10 +103,10 @@ el antiguo head actualiza su prev para apuntar al nuevo nodo y
 se actializa head para que apunte al nuevo
 
 */
-void* pushFront(List* list, void * data) {
-    if (list == NULL) return NULL; // verifica si la lista existe
+void pushFront(List* list, void * data) {
+    if (list == NULL) return; // verifica si la lista existe
 
-    Node * newNode = createNode(data) ; //crea un nuevo nodo con el dato
+    Node * newNode = createNode(data); //crea un nuevo nodo con el dato
 
     if (list->head == NULL) { //si la lista esta vacia
         list->head = list->tail = newNode; // El nuevo nodo es el unico en la lista
