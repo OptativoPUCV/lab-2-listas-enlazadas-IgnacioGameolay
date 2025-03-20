@@ -122,7 +122,30 @@ void pushBack(List * list, void * data) {
     pushCurrent(list,data);
 }
 
+/* PushCurrent
+Verifica si list o list->current son null, si la lista no existe o current
+no apunta a un nodo, simplemente retorna
+Crea e inicializa un nuevo nodo con createNode(data)
+Ajusta los punteros para insertar el nuevo nodo despues del current
+Si current-> next no es Null, ajusta su prev para apuntar al nuevo nodo
+manteniendo la conexion en ambas direcciones
+Si current era el ultimo nodo actualiza el tail
+actualiza el current-> para enlazar en nuevo nodo
+
+*/
 void pushCurrent(List * list, void * data) {
+    if (list = NULL || list->current == NULL ) return; //verifica si la lista o current existen
+    Node * newNode = createNode(data); // crea un nuevo nodo con el dato
+    newNode->next = list->current->next; // el nuevo nodo apunta al siguiente de current
+    newNode->prev = list->current; //el nuevo nodo apunta a current como previo
+
+    if (list->current->next != NULL) {
+        list->current->next->prev = newNode; // ajusta el anterior del siguiente nodo
+    } else {
+        list->tail = newNode;  //si current era el ultimo nodo, actualiza tail
+    }
+    list->current->next = newNode; // Enlaza el nodo actual con el nuevo nodo
+
 }
 
 void * popFront(List * list) {
