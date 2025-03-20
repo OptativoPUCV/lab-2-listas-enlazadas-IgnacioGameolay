@@ -158,8 +158,47 @@ void * popBack(List * list) {
     return popCurrent(list);
 }
 
+/* POPCURRENT
+verifica si list o list->current son null
+si la lista no existe o current no apunta a un  nodo retorna null
+guarda el nodo a eliminar y su dato 
+esto es necesario para retornar el dato despues de liberar la memoria
+si current es el primer nodo: 
+mueve head al siguiente nodo,, si el nuevo head existe, ajusta
+su prev a null, si la lista queda vacia, ajusta tail a null
+si current es el ultimo nodo:
+mueve tail al nodo anterior, ajusta tail->next a null
+si current esta en el medio, ajusta los punteros prev y next de los
+nodos adyacentes para eliminar el nodo actual de la lista
+nueve el current al siguiente nodo, permitiendo seguir iterando por
+la lista sin perder la referencia
+libera la memoria del nodo eliminado y retorna el dato
+
+*/
 void * popCurrent(List * list) {
-    return NULL;
+    if (list == NULL || list->current == NULL) return NULL; //verifica si la lista o current existen
+
+    Node * nodeToRemove = list->current; // guarda el nodo a eliminar
+    void * data = nodeToRemove->data; // guarda el dato a retornar
+    //si el nodo a eliminar es el primero
+    if (nodeToRemove == list->head) {
+        list->head = nodeToRemove->next; //mueve head al siguiente nodo
+        if (list->head) list->head->prev = NULL; //si hay un nuevo head, ajusta su prev
+        else list->tail = NULL; //si la lista queda vacia, tail tambien es NULL
+    }
+    //si el nodo a eliminar es el ultimo
+    else if (nodeToRemove == list->tail) {
+        list->tail = nodeToRemove->prev; // mueve tail al nodo anterior
+        if (list->tail) list->tail->next = NULL; //si hay un nuevo tail, ajusta su next
+    }
+    //si el nodo esta en el medio
+    else {
+        nodeToRemove->prev->next = nodeToRemove->next; //salta el nodo a eliminar
+        nodeToRemove->next->prev = nodeToRemove->prev; //ajusto el nodo siguente
+    }
+    list->current = nodeToRemove->next; //mueve current al siguiente nodo
+    free(nodeToRemove); //libera la memoria dle nodo eliminado
+    return data; //retorna el dato del nodo eliminado
 }
 
 void cleanList(List * list) {
